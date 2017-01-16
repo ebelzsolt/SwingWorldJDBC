@@ -39,11 +39,9 @@ public class Controller {
     private class MenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String evt = e.getActionCommand();
-
-            if (evt.equals(mainWindow.exitMenuString())) {
+            if (e.getSource() == mainWindow.getExitMenu()) {
                 System.exit(0);
-            } else if (evt.equals(mainWindow.loadCitiesMenuItemString())) {
+            } else if (e.getSource() == mainWindow.getLoadCitiesMenu()) {
                 citiesDialog = new CitiesDialog();
                 citiesDialog.addMouseListener(new ListMouseListener());
                 citiesDialog.addDeleteButtonListener(new DeleteButtonActionListener());                

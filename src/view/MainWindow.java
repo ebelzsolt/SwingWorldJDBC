@@ -71,12 +71,12 @@ public class MainWindow {
         }
     }
     
-    public String exitMenuString(){
-        return exitMenuItem.getText();
+    public JMenuItem getExitMenu() {
+        return exitMenuItem;
     }
     
-    public String loadCitiesMenuItemString() {
-        return citiesMenuItem.getText();
+    public JMenuItem getLoadCitiesMenu() {
+        return citiesMenuItem;
     }
     
     public void addMenuActionListener (ActionListener menuActionListener) {
