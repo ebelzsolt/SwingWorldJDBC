@@ -60,16 +60,6 @@ public class MainWindow {
         menuBar.add(data);
         return menuBar;
     }
-
-    private class MyBackgroundPanel extends JPanel {
-        URL url = getClass().getResource("worldMap03.jpg");
-        Image img = new ImageIcon(url).getImage();
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            g.drawImage(img, 0, 0, null);
-        }
-    }
     
     public JMenuItem getExitMenu() {
         return exitMenuItem;
@@ -82,5 +72,15 @@ public class MainWindow {
     public void addMenuActionListener (ActionListener menuActionListener) {
         exitMenuItem.addActionListener(menuActionListener);
         citiesMenuItem.addActionListener(menuActionListener);        
+    }    
+    
+    private class MyBackgroundPanel extends JPanel {
+        URL url = getClass().getResource("worldMap03.jpg");
+        Image img = new ImageIcon(url).getImage();
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            g.drawImage(img, 0, 0, null);
+        }
     }
 }
