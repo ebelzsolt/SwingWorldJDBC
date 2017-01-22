@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.EventQueue;
 import view.CitiesDialog;
 import model.Country;
 import model.City;
@@ -37,32 +38,40 @@ public class Controller {
     }
 
     private class MenuActionListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == mainWindow.getExitMenu()) {
                 System.exit(0);
             } else if (e.getSource() == mainWindow.getLoadCitiesMenu()) {
-                citiesDialog = new CitiesDialog();
-                citiesDialog.addMouseListener(new ListMouseListener());
-                citiesDialog.addDeleteButtonListener(new DeleteButtonActionListener());                
-                
-                countries = country.getCountries();
-                Vector vector = new Vector();
-                
-                for (Country ct : countries) {
-                    vector.add(ct.getName());
-                }                
-                citiesDialog.loadCountryNames(vector);                
+                EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        citiesDialog = new CitiesDialog();
+                        citiesDialog.addMouseListener(new ListMouseListener());
+                        citiesDialog.addDeleteButtonListener(new DeleteButtonActionListener());
+                        
+                        countries = country.getCountries();
+                        Vector vector = new Vector();
+
+                        for (Country ct : countries) {
+                            vector.add(ct.getName());
+                        }
+                        citiesDialog.loadCountryNames(vector);
+                    }
+                });
+
             }
         }
     }
 
     private class DeleteButtonActionListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             int selectedRow = citiesDialog.getSelectedRow();
-            
-            if ((selectedCountry != null) && (selectedRow >= 0)) {            
+
+            if ((selectedCountry != null) && (selectedRow >= 0)) {
                 city.deleteCity(cities.get(selectedRow));
                 citiesDialog.removeRow(selectedRow);
             }
@@ -73,7 +82,7 @@ public class Controller {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            citiesDialog.clearTable();            
+            citiesDialog.clearTable();
             selectedCountry = countries.get(citiesDialog.getSelectedIndex());
             cities = city.getCities(selectedCountry);
 
@@ -87,15 +96,19 @@ public class Controller {
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {}
+        public void mousePressed(MouseEvent e) {
+        }
 
         @Override
-        public void mouseReleased(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {
+        }
 
         @Override
-        public void mouseEntered(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {
+        }
 
         @Override
-        public void mouseExited(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {
+        }
     }
 }

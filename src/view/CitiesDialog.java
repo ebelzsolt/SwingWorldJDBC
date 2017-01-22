@@ -42,7 +42,7 @@ public class CitiesDialog extends JDialog {
         setLocationRelativeTo(null);
         add(createListPanel());
         add(createTablePanel());
-        //setModal(true);
+        setModal(true);
         setResizable(false);
         setVisible(true);
     }
