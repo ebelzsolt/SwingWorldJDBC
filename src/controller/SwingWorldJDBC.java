@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.EventQueue;
 import model.Country;
 import model.City;
 import view.MainWindow;
@@ -14,6 +15,13 @@ public class SwingWorldJDBC {
         City city = new City();
         Country country = new Country();
         MainWindow mw = new MainWindow();
-        Controller controller = new Controller(city, country, mw);            
+        Controller controller = new Controller(city, country, mw);
+        
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                mw.setVisible(true);
+            }
+        });
     }
 }

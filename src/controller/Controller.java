@@ -44,23 +44,25 @@ public class Controller {
             if (e.getSource() == mainWindow.getExitMenu()) {
                 System.exit(0);
             } else if (e.getSource() == mainWindow.getLoadCitiesMenu()) {
+                
+                citiesDialog = new CitiesDialog();
                 EventQueue.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        citiesDialog = new CitiesDialog();
-                        citiesDialog.addMouseListener(new ListMouseListener());
-                        citiesDialog.addDeleteButtonListener(new DeleteButtonActionListener());
-                        
-                        countries = country.getCountries();
-                        Vector vector = new Vector();
-
-                        for (Country ct : countries) {
-                            vector.add(ct.getName());
-                        }
-                        citiesDialog.loadCountryNames(vector);
+                        citiesDialog.setVisible(true);
                     }
                 });
+                
+                citiesDialog.addMouseListener(new ListMouseListener());
+                citiesDialog.addDeleteButtonListener(new DeleteButtonActionListener());
 
+                countries = country.getCountries();
+                Vector vector = new Vector();
+
+                for (Country ct : countries) {
+                    vector.add(ct.getName());
+                }
+                citiesDialog.loadCountryNames(vector);
             }
         }
     }

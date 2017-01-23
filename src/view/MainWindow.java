@@ -16,9 +16,8 @@ import javax.swing.JPanel;
  *
  * @author Ébel Zsolt
  */
-public class MainWindow {
-
-    private JFrame frame;
+public class MainWindow extends JFrame {
+    
     private JMenuBar menuBar;
     private JMenu file;
     private JMenu data;
@@ -30,20 +29,19 @@ public class MainWindow {
     }
 
     private void initComponents() {
-        frame = new JFrame("Swing application with JDBC using World sample database");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(625, 650);
-        frame.setResizable(false);
-        frame.setJMenuBar(createMenuBar());
+        setTitle("Swing application with JDBC using World sample database");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        setSize(625, 650);
+        setResizable(false);
+        setJMenuBar(createMenuBar());
         
         try {
-            frame.getContentPane().add(new MyBackgroundPanel());
+            getContentPane().add(new MyBackgroundPanel());
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Background image is missing!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     private JMenuBar createMenuBar() {
