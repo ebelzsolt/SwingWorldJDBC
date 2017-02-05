@@ -30,7 +30,7 @@ public class CitiesDialog extends JDialog {
     private DefaultTableModel model;
     private JTable table;
     private JScrollPane tScrollPane;
-    private DefaultTableCellRenderer rightRenderer;
+    private DefaultTableCellRenderer rightAlignment;
     private JButton deleteButton;
     private Border listBorder;
     private final Object[] columnNames = {"City name", "District", "Population"};
@@ -75,9 +75,9 @@ public class CitiesDialog extends JDialog {
         };
 
         table = new JTable(model);
-        rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
-        table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        rightAlignment = new DefaultTableCellRenderer();
+        rightAlignment.setHorizontalAlignment(SwingConstants.RIGHT);
+        table.getColumnModel().getColumn(2).setCellRenderer(rightAlignment);
         table.setPreferredScrollableViewportSize(new Dimension(570, 491));
         table.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
         tScrollPane = new JScrollPane(table);

@@ -7,6 +7,7 @@ import model.City;
 import view.MainWindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -23,8 +24,8 @@ public class Controller {
     private MainWindow mainWindow;
     private CitiesDialog citiesDialog;
     private Country selectedCountry;
-    List<Country> countries;
-    List<City> cities;
+    private List<Country> countries;
+    private List<City> cities;
 
     public Controller() {
     }
@@ -44,8 +45,11 @@ public class Controller {
             if (e.getSource() == mainWindow.getExitMenu()) {
                 System.exit(0);
             } else if (e.getSource() == mainWindow.getLoadCitiesMenu()) {
-                
+                countries = country.getCountries();
                 citiesDialog = new CitiesDialog();
+                citiesDialog.addMouseListener(new ListMouseListener());
+                citiesDialog.addDeleteButtonListener(new DeleteButtonActionListener());
+                
                 EventQueue.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -53,12 +57,7 @@ public class Controller {
                     }
                 });
                 
-                citiesDialog.addMouseListener(new ListMouseListener());
-                citiesDialog.addDeleteButtonListener(new DeleteButtonActionListener());
-
-                countries = country.getCountries();
                 Vector vector = new Vector();
-
                 for (Country ct : countries) {
                     vector.add(ct.getName());
                 }
@@ -80,7 +79,7 @@ public class Controller {
         }
     }
 
-    private class ListMouseListener implements MouseListener {
+    private class ListMouseListener extends MouseAdapter {
 
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -95,22 +94,6 @@ public class Controller {
                 row.addElement(String.format("%, d", c.getPopulation()));
                 citiesDialog.fillTableData(row);
             }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
+        }        
     }
 }
